@@ -132,8 +132,15 @@
                                           :content
                                           second
                                           :content
-                                          first)]
-                            {:good good :bad bad :link link :title title :price price :fav fav :comment comment}))))]
+                                          first)
+                                pic (-> line
+                                        :content
+                                        (nth 3)
+                                        :content
+                                        second
+                                        :attrs
+                                        :src)]
+                            {:good good :bad bad :link link :title title :price price :fav fav :comment comment :pic pic}))))]
     items))
 
 (defn smzdm-n
@@ -158,3 +165,10 @@
                 (+ (:good %) (:bad %) (:fav %) (:comment %))))
      (map #(println %))
      (reduce =))
+
+(->> (smzdm-n 1)
+     (filter #(and (> (:good %) (* (:bad %) 5))
+                   (> (:good %) 50)
+                   (> (:fav %) 10)
+                   (> (:comment %) 10)))
+     (take 3))
