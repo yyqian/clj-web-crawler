@@ -49,7 +49,7 @@
                                  :link  (str "https://leetcode.com" link)
                                  :lock  lock})))
         free-problem-set (->> problem-set
-                              (filter #(not (:lock %)))
+                              (filter #(and (not (:lock %))))
                               (map #(hash-map :id (:id %) :title (:title %) :link (:link %))))]
     free-problem-set))
 
@@ -172,3 +172,8 @@
                    (> (:fav %) 10)
                    (> (:comment %) 10)))
      (take 3))
+
+; 免费的是 279 题
+(count (leetcode))
+
+(/ (- 279 27) 30.0)
