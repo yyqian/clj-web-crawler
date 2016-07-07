@@ -45,15 +45,27 @@
                                                             :content
                                                             (nth 5)
                                                             :content)]
-                                            (> (count content) 3))]
+                                            (> (count content) 3))
+                                     difficulty (-> %
+                                                    :content
+                                                    (nth 13)
+                                                    :content
+                                                    first)]
                                 {:id    id
                                  :title title
                                  :link  (str "https://leetcode.com" link)
-                                 :lock  lock})))
-        free-problem-set (->> problem-set
-                              (filter #(and (not (:lock %))))
-                              (map #(hash-map :id (:id %) :title (:title %) :link (:link %))))]
-    free-problem-set))
+                                 :lock  lock
+                                 :difficulty difficulty})))]
+    problem-set))
+
+(defn filtered-leetcode
+  []
+  (->> (leetcode)
+       (filter #(and (not (:lock %))
+                     (= (:difficulty %) "Hard")))))
+
+(nth (leetcode) 100)
+(count (filtered-leetcode))
 
 (defn smzdm
   "smzdm.com crawler"
@@ -174,8 +186,3 @@
                    (> (:fav %) 10)
                    (> (:comment %) 10)))
      (take 3))
-
-; 免费的是 279 题
-(count (leetcode))
-
-(/ (- 279 27) 30.0)
