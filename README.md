@@ -1,69 +1,15 @@
 # clj-web-crawler
 
-这是一个用 Clojure 写的网页爬虫。
+Web Crawler and Robot in Clojure
 
-## smzdm.com
+Tools used:
 
-什么值得买（smzdm.com）爬取的原始数据:
+- http client: clj-http
+- html parser: enlive
+- json parser: cheshire
 
-- 标题
-- 价格
-- 图片链接
-- 网页超链接
-- 值的数目
-- 不值的数目
-- 收藏数
-- 评论数
+Sites crawled:
 
-原始数据示例:
-
-```
-({:good 69,
-  :bad 13,
-  :link "http://www.smzdm.com/p/6170512/",
-  :title "深夜白菜特价包邮 女士平底凉鞋、线控自拍杆、垃圾桶等",
-  :price "20160611",
-  :fav 16,
-  :comment 73,
-  :pic "http://y.zdmimg.com/201606/11/575c2747e5fff.jpg_d200.jpg"}
- {:good 76,
-  :bad 11,
-  :link "http://www.smzdm.com/p/6170510/",
-  :title "历史新低价：JUKI 重机 HZL-353ZR-C 多功能缝纫机",
-  :price "749元包邮",
-  :fav 50,
-  :comment 38,
-  :pic "http://y.zdmimg.com/201508/20/55d53e8a1c38d.jpeg_d200.jpg"}
- {:good 606,
-  :bad 43,
-  :link "http://www.smzdm.com/p/6170493/",
-  :title "限地区：SONY 索尼 KD-65X8500D 65英寸 4K 液晶电视",
-  :price "12898元包邮",
-  :fav 55,
-  :comment 133,
-  :pic "http://ym.zdmimg.com/201606/11/575c14b5ac40c.jpg_d200.jpg"})
-```
-
-序列化之后示例:
-
-```
-深夜白菜特价包邮 女士平底凉鞋、线控自拍杆、垃圾桶等 | 20160611 | 83% | 166
-历史新低价：JUKI 重机 HZL-353ZR-C 多功能缝纫机 | 749元包邮 | 87% | 172
-限地区：SONY 索尼 KD-65X8500D 65英寸 4K 液晶电视 | 12898元包邮 | 93% | 825
-Iriver 艾利和 Astell&Kern AK240 HiFi随身音乐播放器 金色 | 12799元包邮（12999-200） | 96% | 4869
-Santini Giro d'Italia 环意赛玫瑰衫 骑行服短袖 | 387.57元 | 92% | 234
-移动端：BenQ 明基 GW2270 21.5英寸 液晶显示器 | 549元包邮（需用券，589-40） | 92% | 236
-轻专题：欧洲杯边看边喝——啤酒小汇总 | 多个专场，修道院上新 | 90% | 449
-移动端：JACK DANIELS 杰克丹尼 Tennessee 田纳西州威士忌 700ml+凑单品 | 90元包邮（双重优惠） | 94% | 438
-ecco 爱步 Seattle Bicycle-Toe 男士休闲皮鞋 | $67.98（约￥550） | 93% | 256
-历史新低：Panasonic 松下 罗密欧系列 XQG100-E1230 10公斤 变频滚筒洗衣机 | 3499元包邮（3899-400） | 93% | 739
-移动端：Nikon 尼康 AF-S 14-24mm f/2.8G ED 单反广角镜头 | 8399元包邮 | 94% | 317
-移动端：ZENITH 真力时 18.5000.2572PC/01.C498 传承系列 自动机械男士手表 | 29000元（用券后） | 91% | 822
-12日0点开始，移动端：PHILIPS 飞利浦 HD3032/21 电饭煲 3L | 129元包邮 | 85% | 252
-移动端：SONY 索尼 ICD-TX650 16GB 数码锂电录音笔 | 759元包邮 | 86% | 206
-邮轮游：歌诗达邮轮 大西洋号 天津出发 环游太平洋46天海岛邮轮之旅 11月30日出发 | 28999元 | 95% | 1181
-Tommy Hilfiger  Tessa 女款单肩包 | $46.5+$10.5含税直邮（约￥375） | 91% | 115
-银鹭 椰奶燕麦八宝粥 280g*12罐 | 46元，可99-50 | 86% | 373
-```
-
-以上数据格式为: `标题 | 价格 | 值的百分比 | 热度`
+- [Leetcode](https://leetcode.com/)
+- [Hacker News](https://news.ycombinator.com/)
+- [SMZDM](http://www.smzdm.com/)
