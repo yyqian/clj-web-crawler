@@ -45,7 +45,7 @@
   (let [tokens (get-login-tokens)]
     (:cookies (client/post "http://imagine.yyqian.com/login"
                            {:form-params {:username "yyqian"
-                                          :password "Qyy870121"
+                                          :password "19870121"
                                           :_csrf    (:_csrf tokens)}
                             :cookies     (:cookies tokens)}))))
 

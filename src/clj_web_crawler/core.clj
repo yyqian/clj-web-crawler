@@ -1,4 +1,5 @@
 (ns clj-web-crawler.core
+  (:require [clj-web-crawler.hacker-news :as hn])
   (:gen-class))
 
 (defn -main
