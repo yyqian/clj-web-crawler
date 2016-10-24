@@ -9,19 +9,24 @@
   [category]
   (read-string (slurp (str "https://hacker-news.firebaseio.com/v0/" category ".json"))))
 
-(defn beststory-ids
+(defn topstory-ids
   []
-  (story-ids "beststories"))
+  (story-ids "topstories"))
 
 (defn item-url
   [id]
   (str "https://hacker-news.firebaseio.com/v0/item/" id ".json"))
 
+(defn slow-slurp
+  [t url]
+  (Thread/sleep t)
+  (slurp url))
+
 (defn beststories
   [n]
-  (->> (beststory-ids)
+  (->> (topstory-ids)
        (map item-url)
-       (map slurp)
+       (map #(slow-slurp 1000 %))
        (map cheshire/parse-string)
        (take n)))
 
@@ -45,7 +50,7 @@
   (let [tokens (get-login-tokens)]
     (:cookies (client/post "http://imagine.yyqian.com/login"
                            {:form-params {:username "yyqian"
-                                          :password "19870121"
+                                          :password ""
                                           :_csrf    (:_csrf tokens)}
                             :cookies     (:cookies tokens)}))))
 
